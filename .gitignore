@@ -1,0 +1,7 @@
+*.rbc
+*.sassc
+.sass-cache
+.DS_Store
+.idea
+/.bundle
+/spec/tmp/*

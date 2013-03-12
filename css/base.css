@@ -1,0 +1,15 @@
+@charset 'UTF-8';
+/*
+ * smooster big flyout navigation CSS 0.1
+ * https://github.com/smooster/smooster-js-navi-bigflyout
+ *
+ * Copyright 2013, Sebastian Maier
+ * http://smooster.com
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+* { padding: 0; margin: 0; border: 0; }
+html { font-size:100%; font: inherit; vertical-align: baseline; min-height: 100.05%; overflow-y: scroll; }
+body, p { font-family: 'Ubuntu', sans-serif; font-size: 16px;}
