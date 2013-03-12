@@ -9,47 +9,66 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-$(document).ready(function(){
-    
-            /* main navigation - start */
-          $('#navimain a').click(function(e) {
-            if($(this).attr('href') == "#") {
-              e.preventDefault;
+(function( $ ) {
+  $.fn.bigFlyoutNavi = function( options ) {
 
-              if ($(this).parent().hasClass('active') === false) {
-                $('#navimain li.active').append($('.subnavi_inner').html())
-                $('.subnavi').hide();
-                $('.subnavi_inner').html('');
-                $('#navimain li').removeClass('active');
-                var SubnaviValue = $(this).parent().find('ul').html();
-                if (SubnaviValue > '') {
-                  $(this).parent().find('ul').appendTo('.subnavi_inner');
-                  $('.subnavi').slideDown('slow');
+      var mainnavi = this;
+
+      var bigflyout = {
+
+          bind_events: function() {
+
+              $('a', mainnavi).click(function(e) {
+                if($(this).attr('href') == "#") {
+                  e.preventDefault;
+
+                  if ($(this).parent().hasClass('active') === false) {
+                    bigflyout.subnavi_hide()
+                    var SubnaviValue = $(this).parent().find('ul').html();
+                    if (SubnaviValue > '') {
+                      $(this).parent().find('ul').appendTo(settings['subnavi_inner']);
+                      $(settings['subnavi']).slideDown('slow');
+                    }
+                    $(this).parent().addClass('active');
+                    return false;
+                  }
                 }
-                $(this).parent().addClass('active');
-                return false;
-              }
-            }
-          }); 
-          $('.subnavi_close').click(function(e) {
-            e.preventDefault;
-            $('.subnavi').hide();
-            $('.subnavi_inner').html('');
-            $('#navimain li').removeClass('active');
-          }); 
-          document.onkeydown = function(evt) {
-            evt = evt || window.event;
-            if (evt.keyCode == 27) {
-              $('.subnavi').hide();
-              $('.subnavi_inner').html('');
-              $('#navimain li').removeClass('active');
-            };
-          };
-          $('.subnavi_inner a').click(function(e) { // is not get fired
-            e.preventDefault;
-            $('.subnavi_inner li').removeClass('active');
-            $(this).parent().addClass('active');
-          });
-          /* main navigation - end */
+              });
+
+              $(settings['close_button']).click(function(e) {
+                e.preventDefault;
+                bigflyout.subnavi_hide()
+              });
+
+              document.onkeydown = function(evt) {
+                evt = evt || window.event;
+                if (evt.keyCode == 27) {
+                    bigflyout.subnavi_hide()
+                };
+              };
+          },
+
+          subnavi_hide: function(e) {
+              $(settings['subnavi']).hide();
+              $('li.active', mainnavi).append($(settings['subnavi_inner']).html())
+              $(settings['subnavi_inner']).html('');
+              $('li', mainnavi).removeClass('active');
+          }
+      }
+
+      var settings = $.extend( {
+          'close_button'         : '.subnavi_close',
+          'subnavi' : '.subnavi',
+          'subnavi_inner' : '.subnavi_inner'
+        }, options);
+
+      bigflyout.bind_events()
+
+  };
+})( jQuery );
+
+$(document).ready(function(){
+
+    $('#navimain').bigFlyoutNavi()
 
  });   

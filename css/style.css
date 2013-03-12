@@ -16,7 +16,6 @@
 
 
 #navimain, #navimain_bg { position: absolute; top: 0; left: 0; width: 100%; height: 28px; line-height: 28px; overflow: hidden; }
-#navimain_bg { z-index: 2; background: transparent url('bg_navi.gif') top right no-repeat; }
 #navimain { z-index: 3; }
 #navimain ul { list-style: none; margin-left: 0 !important; }
 #navimain ul ul { display: none; }
