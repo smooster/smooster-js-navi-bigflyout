@@ -1,5 +1,5 @@
 /*
- * smooster big flyout navigation JS 0.1
+ * smooster big flyout navigation JS 0.9.2
  * https://github.com/smooster/smooster-js-navi-bigflyout
  *
  * Copyright 2013, Sebastian Maier, Haydi Wetzel
@@ -20,7 +20,6 @@
 
               $('a', mainnavi).click(function(e) {
                 if($(this).parent().find("ul").length > 0) {
-                  console.log($(this).parent())
                   e.preventDefault;
 
                   if ($(this).parent().hasClass('active') === false) {
@@ -33,9 +32,6 @@
                     $(this).parent().addClass('active');
                     return false;
                   }
-                }
-                else {
-                  console.log("ups")
                 }
               });
 
