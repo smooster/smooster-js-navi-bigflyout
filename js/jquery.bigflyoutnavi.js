@@ -19,7 +19,8 @@
           bind_events: function() {
 
               $('a', mainnavi).click(function(e) {
-                if($(this).attr('href') == "#") {
+                if($(this).parent().find("ul").length > 0) {
+                  console.log($(this).parent())
                   e.preventDefault;
 
                   if ($(this).parent().hasClass('active') === false) {
@@ -32,6 +33,9 @@
                     $(this).parent().addClass('active');
                     return false;
                   }
+                }
+                else {
+                  console.log("ups")
                 }
               });
 
